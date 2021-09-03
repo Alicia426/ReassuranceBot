@@ -1,7 +1,10 @@
 import discord
 import os
 import datetime
+import random
 from secret import my_secret
+from advice import advice_list
+from tryout import tryout_string
 
 client = discord.Client()
 
@@ -9,9 +12,17 @@ commands = ('!help', '!configure', '!hello', '!reassure',
             '!advice', '!config_stuffie', '!butter', '!tryout')
 
 
+def pronounParser(pronoun_string):
+    pronouns = pronoun_string.strip().split("/")
+    pronoun_dict = {
+        "sps": pronouns[0], "spo": pronouns[1], "sp": pronouns[2], "sr": pronouns[3]}
+    return pronoun_dict
+
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
+    print("I know", len(advice_list), "pieces of advice.")
 
 
 @client.event
@@ -44,7 +55,8 @@ async def on_message(message):
     # Gives life advice
     if message.content.startswith(commands[4]):
         print(message.author, message.content)
-        await message.channel.send('WIP 4')
+        adv = random.choice(advice_list)
+        await message.channel.send(adv)
 
     # Gives life advice
     if message.content.startswith(commands[5]):
@@ -58,10 +70,26 @@ async def on_message(message):
             data = file.read()
             await message.channel.send(data)
 
-    # Try name and pronouns out    
+    # Try name and pronouns out
     if message.content.startswith(commands[7]):
         print(message.content, message.author)
-        await message.channel.send('WIP 6')
+        name = message.content.split(" ")[1]
+        pronouns = pronounParser(message.content.split(" ")[2])
+        print(name, pronouns)
+        if pronouns["sps"] == "they":
+            s = ""
+            spob = "their"
+        else:
+            spob = pronouns["spo"]
+            s = "s"
+        msg = tryout_string.format(spob=spob,
+                                   name=name,
+                                   spo=pronouns["spo"],
+                                   sps=pronouns["sps"],
+                                   sp=pronouns["sp"],
+                                   sr=pronouns["sr"],
+                                   s=s)
+        await message.channel.send(msg)
 
 
 while True:
