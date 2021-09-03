@@ -2,9 +2,11 @@ import discord
 import os
 import datetime
 import random
+import ymldb
 from secret import my_secret
 from advice import advice_list
 from tryout import tryout_string
+from reassurance import reassurances
 
 client = discord.Client()
 
@@ -23,6 +25,7 @@ def pronounParser(pronoun_string):
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     print("I know", len(advice_list), "pieces of advice.")
+    print("I have", len(reassurances), "reassurance affimations")
 
 
 @client.event
@@ -40,6 +43,9 @@ async def on_message(message):
     # Configures user name and pronouns
     if message.content.startswith(commands[1]):
         print(message.author, message.content)
+        name = message.content.split(" ")[1]
+        pronouns = pronounParser(message.content.split(" ")[2])
+        print(name, pronouns)
         await message.channel.send('WIP 1')
 
     # Says hello
