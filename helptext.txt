@@ -1,0 +1,21 @@
+Hello, I am ReassuranceBot, you can call me Res. 
+
+I respond to the following instructions:
+
+    - !help => Display this message.
+    - !configure => Tell me you preferred name and pronouns so I remember. 
+                    Example: `!configure Eli they/them/theirs`
+                    If you change your discord handle, you will have to tell me again.
+    - !config_stuffie => Tell me your stuffie's name and pronouns so I remember. 
+                    Example: `!config_stuffie Bear she/her/hers`
+                    If you change your discord handle, you will have to tell me again.
+                    If you change pronouns and preferred name, run `!configure` again
+                    and I will update them.
+    - !hello => I say hi and confirm I am ok.
+    - !reassure => I give you a reassuring message, because you are not alone.
+                    Can be given the `--stuffie` flag to reassure your friend too.
+                    Examples: `!reassure --stuffie`, `!reassure`
+    - !advice => I give you a piece of advice from my mother Alicia.
+    - !butter => I pass you butter, cry, and recite an ancient text.
+
+I use it/its pronouns, but any are fine. 
