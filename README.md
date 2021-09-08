@@ -4,6 +4,14 @@ We all need a little reassurance sometimes, and sometimes our loved ones are asl
 
 This Discord bot is written in python and uses the `discord.py` module. 
 
+## Docker Deployment:
+
+Commands:
+```
+docker build . --tag reassurance
+docker run -d --name=resbot reassurance
+```
+
 ## Current Features:
 
 - Neopronoun support.
